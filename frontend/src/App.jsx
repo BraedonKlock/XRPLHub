@@ -1,10 +1,15 @@
 import './App.css'
 
+import { Routes, Route } from "react-router-dom";
+
+import LoggedinHomePage from './pages/LoggedinHomePage.jsx';
 function App() {
 
   return (
     <>
-	  <h1>WELCOME</h1>
+	  <Routes>
+	  	<Route path="/home" element={<LoggedinHomePage/>}/>
+	  </Routes>
     </>
   )
 }
