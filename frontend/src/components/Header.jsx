@@ -1,5 +1,17 @@
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faBars } from "@fortawesome/free-solid-svg-icons";
+
+import "./Header.css";
+
 export default function Header() {
 	return (
-		<h1>HEADER</h1>
+		<header>
+			<nav>
+				<button className="hamburger">
+					<FontAwesomeIcon icon={faBars} size="lg" />
+				</button>
+			</nav>
+			<h1>Header</h1>
+		</header>
 	)
 }
