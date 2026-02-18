@@ -1,4 +1,8 @@
 @media (min-width: 900px) {
   .hamburger { display: none; }
+  .mobile { display: none; }
+  .mobile.open { display: flex; }
 }
 
+.mobile { display: none; }
+.mobile.open { display: flex; }
