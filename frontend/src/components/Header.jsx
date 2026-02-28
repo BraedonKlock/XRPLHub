@@ -10,17 +10,23 @@ export default function Header() {
 	const menuRef = useRef(null);
 	
 	useEffect(() => {
-		function handleClickOutside(e) {
+		const handleClickOutside = (e) => {
 			if (!menuRef.current) return;
 			if (!menuRef.current.contains(e.target)) {
 				setIsOpen(false);
 			};
 		};
 
+		const handleScroll = () => {
+			setIsOpen(false);
+		};
+
 		document.addEventListener("pointerdown", handleClickOutside, true);
+		window.addEventListener("scroll", handleScroll, { passive: true });
 
 		return () => {
 			document.removeEventListener("pointerdown", handleClickOutside, true);
+			window.removeEventListener("scroll", handleScroll);
 		};
 	},[])
 
@@ -33,7 +39,7 @@ export default function Header() {
 			</nav>
 			<h1>Header</h1>
 			<div className={`mobile ${isOpen ? "open" : ""}`}>
-				<NavLink to="">option one</NavLink>
+				<NavLink to="" onClick={() => setIsOpen(false)}>option one</NavLink>
 			</div>
 		</header>
 	)
