@@ -39,7 +39,7 @@ export default function Header() {
 			</nav>
 			<h1>Header</h1>
 			<div className={`mobile ${isOpen ? "open" : ""}`}>
-				<NavLink to="/" onClick={() => setIsOpen(false)}>Home</NavLink>
+				<NavLink to="/dashboard" onClick={() => setIsOpen(false)}>Dashboard</NavLink>
 				<NavLink to="/wallet-creation" onClick={() => setIsOpen(false)}>Wallet Creation</NavLink>
 				<NavLink to="" onClick={() => setIsOpen(false)}>Payment Channels</NavLink>
 				<NavLink to="" onClick={() => setIsOpen(false)}>Escrow</NavLink>

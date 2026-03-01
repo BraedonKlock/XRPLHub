@@ -3,7 +3,7 @@ import './App.css'
 import { Routes, Route } from "react-router-dom";
 import Header from "./components/Header.jsx";
 
-import LoggedinHomePage from './pages/LoggedinHomePage.jsx';
+import DashboardPage from './pages/DashboardPage.jsx';
 import WalletCreationPage from './pages/WalletCreationPage.jsx';
 
 function App() {
@@ -12,7 +12,7 @@ function App() {
     <>
 	  <Header />
 	  <Routes>
-	  	<Route path="/" element={<LoggedinHomePage/>}/>
+	  	<Route path="/dashboard" element={<DashboardPage/>}/>
 	  	<Route path="/wallet-creation" element={<WalletCreationPage/>}/>
 	  </Routes>
     </>
