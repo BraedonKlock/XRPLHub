@@ -37,7 +37,7 @@ export default function Header() {
 					<FontAwesomeIcon icon={faBars} size="lg" />
 				</button>
 			</nav>
-			<h1>Header</h1>
+			<h1>XRPL Hub</h1>
 			<div className={`mobile ${isOpen ? "open" : ""}`}>
 				<NavLink to="/dashboard" onClick={() => setIsOpen(false)}>Dashboard</NavLink>
 				<NavLink to="/wallet-creation" onClick={() => setIsOpen(false)}>Wallet Creation</NavLink>
