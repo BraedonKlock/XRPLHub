@@ -1,10 +1,9 @@
-const path = require("path");
 const express = require("express");
 
-const loggedinController = require("../controllers/loggedin");
+const notLoggedinController = require("../controllers/notLoggedin");
 
 const router = express.Router();
 
-router.get("/",loggedinController.);
+router.post("/login", notLoggedinController.login);
 
 module.exports = router;

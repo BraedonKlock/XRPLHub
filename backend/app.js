@@ -7,13 +7,19 @@ if (process.env.NODE_ENV !== "production") {
 
 const notLoggedinRoutes = require("./api/notLoggedin");
 const loggedinRoutes = require("./api/loggedin");
+const { requireAuth } = require("./middleware/auth");
+
+const cors = require("cors");
 
 const app = express();
+
+app.use(cors());
+app.use(express.json());
 
 const server = http.createServer(app);
 
 app.use("/api", notLoggedinRoutes);
-app.use("/api/loggedin", loggedinRoutes);
+app.use("/api/loggedin",requireAuth, loggedinRoutes);
 
 
 const PORT = process.env.PORT || 3000;

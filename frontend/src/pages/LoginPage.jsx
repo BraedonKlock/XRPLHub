@@ -1,19 +1,46 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useAuth } from "../context/AuthContext";
 import "./LoginPage.css";
 
 export default function LoginPage() {
 	const [formData, setFormData] = useState({ email: "", password: "" });
 	const [showPassword, setShowPassword] = useState(false);
+	const [error, setError] = useState("");
+	const [loading, setLoading] = useState(false);
+	const { login } = useAuth();
+	const navigate = useNavigate();
 
 	function handleChange(e) {
 		setFormData(prev => ({ ...prev, [e.target.name]: e.target.value }));
 	}
 
-	function handleSubmit(e) {
+	async function handleSubmit(e) {
 		e.preventDefault();
-		// TODO: hook up to backend auth
-		console.log("Login attempt:", formData.email);
+		setError("");
+		setLoading(true);
+
+		try {
+			const res = await fetch("/api/login", {
+				method: "POST",
+				headers: { "Content-Type": "application/json" },
+				body: JSON.stringify(formData),
+			});
+
+			const data = await res.json();
+
+			if (!res.ok) {
+				setError(data.message || "Login failed");
+				return;
+			}
+
+			login(data.token);
+			navigate("/dashboard");
+		} catch {
+			setError("Unable to connect to server");
+		} finally {
+			setLoading(false);
+		}
 	}
 
 	return (
@@ -93,8 +120,10 @@ export default function LoginPage() {
 						<Link to="/forgot-password" className="forgot-link">Forgot password?</Link>
 					</div>
 
-					<button type="submit" className="login-btn">
-						<span>Sign In</span>
+					{error && <p className="login-error">{error}</p>}
+
+					<button type="submit" className="login-btn" disabled={loading}>
+						<span>{loading ? "Signing in..." : "Sign In"}</span>
 						<svg viewBox="0 0 24 24" fill="none">
 							<path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
 						</svg>

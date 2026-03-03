@@ -1,4 +1,3 @@
-backend/util/database.js
 if (process.env.NODE_ENV !== "production") {
 	require("dotenv").config();
 }
