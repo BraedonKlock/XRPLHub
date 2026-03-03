@@ -2,7 +2,6 @@ import './App.css'
 
 import { Routes, Route, Navigate } from "react-router-dom";
 import Header from "./components/Header.jsx";
-import ShootingStarCursor from "./components/ShootingStarCursor.jsx";
 import { AuthProvider, useAuth } from "./context/AuthContext.jsx";
 
 import HomePage from './pages/HomePage.jsx';
@@ -18,8 +17,7 @@ function ProtectedRoute({ children }) {
 function App() {
   return (
     <AuthProvider>
-      <ShootingStarCursor />
-      <Header />
+<Header />
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/login" element={<LoginPage />} />
