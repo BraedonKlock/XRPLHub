@@ -5,12 +5,14 @@ if (process.env.NODE_ENV !== "production") {
 	require("dotenv").config(); // load backend/.env in dev
 };
 
+const notLoggedinRoutes = require("/api/notLoggedin");
 const loggedinRoutes = require("/api/loggedin");
 
 const app = express();
 
 const server = http.createServer(app);
 
+app.use("/api", notLoggedinRoutes);
 app.use("/api/loggedin", loggedinRoutes);
 
 
